@@ -4,6 +4,7 @@ import sqlite3
 faceDetect = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml');
 cam = cv2.VideoCapture(0);
 
+# Function to insert or update data in database
 def insertOrUpdate(Id, Name, age):
     conn = sqlite3.connect("sqlite.db")
     cmd = "SELECT * FROM students  WHERE Id="+str(Id);

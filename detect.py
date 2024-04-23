@@ -7,6 +7,7 @@ cam = cv2.VideoCapture(0)
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 
+# Function to get profile from database
 def getProfile(id):
     conn = sqlite3.connect("sqlite.db")
     cursor = conn.execute(f"SELECT * FROM students WHERE Id=?", (id,))

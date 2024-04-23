@@ -31,6 +31,7 @@ def start_face_recognition():
         messagebox.showerror("Error", "Invalid ID number.")
         return
 
+    # Add inputs to database
     insertOrUpdate(Id, Name, age)
 
     id_entry.delete(0, tk.END)
@@ -40,6 +41,7 @@ def start_face_recognition():
     sampleNum = 0
     no_face_detected_time = None
 
+    # Start capturing images
     while True:
         _, img = cam.read()
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -69,12 +71,15 @@ def start_face_recognition():
     
     cv2.destroyAllWindows()
         
+    # Train the model
     recognizer = cv2.face.LBPHFaceRecognizer_create()
     path = 'dataset'
     ids, faces = get_image_with_id(path)
     cv2.destroyAllWindows()
     recognizer.train(faces, ids)
     recognizer.save('recognizer/trainingdata.yml')
+
+    # Show detection/recognition window
     recognizer.read('recognizer/trainingdata.yml')
     while(True):
         _, img = cam.read();
@@ -98,6 +103,7 @@ def start_face_recognition():
     cam.release()
     cv2.destroyAllWindows()
 
+# Function to view database
 def view_database():
     db_window = tk.Toplevel(root)
     db_window.title("Students Database")
@@ -124,6 +130,7 @@ def view_database():
     tree.pack()
     conn.close()
 
+# Function to begin face recognition
 def begin_face_recognition():
     cam = cv2.VideoCapture(0)
     try:
@@ -148,7 +155,7 @@ def begin_face_recognition():
         cam.release()
         cv2.destroyAllWindows()
 
-
+# Function to focus next widget
 def focus_next_widget(event):
     event.widget.tk_focusNext().focus()
     return "break"
@@ -169,34 +176,34 @@ image = Image.open('logos/AUPP Vertical Logo.png')
 image = image.resize((200, 217))
 image = ImageTk.PhotoImage(image)
 
-image_label = tk.Label(root, image=image, bg='white')
+image_label = tk.Label(root, image=image, bg='white', fg='black')
 image_label.place(relx=0.5, rely=0, anchor= "n")
 
 label = tk.Label(root, text='Welcome to AUPP Facial Recognition System', font=('Times New Roman', 24), fg='#2F3A6A', bg="white")
 label.place(relx=0.5, rely=220/720, anchor= "n")
 
-id_label = tk.Label(root, text="Enter your ID:", font=('Times New Roman', 16), bg="white")
+id_label = tk.Label(root, text="Enter your ID:", font=('Times New Roman', 16), bg="white", fg='black')
 id_label.place(relx=0.5, rely=(220/720)+35/720, anchor= "n")
 
-id_entry = tk.Entry(root)
+id_entry = tk.Entry(root, fg='black', bg='white')
 id_entry.place(relx=0.5, rely=(220/720)+70/720, anchor= "n")
 id_entry.bind("<Return>", focus_next_widget)
 
 
-name_label = tk.Label(root, text="Enter your first name:", font=('Times New Roman', 16), bg="white")
+name_label = tk.Label(root, text="Enter your first name:", font=('Times New Roman', 16), bg="white", fg='black')
 name_label.place(relx=0.5, rely=(220/720)+105/720, anchor= "n")
 
-name_entry = tk.Entry(root)
+name_entry = tk.Entry(root, fg='black', bg='white')
 name_entry.place(relx=0.5, rely=(220/720)+140/720, anchor= "n")
 name_entry.bind("<Return>", focus_next_widget)
 
-age_label = tk.Label(root, text="Enter your age:", font=('Times New Roman', 16), bg="white")
+age_label = tk.Label(root, text="Enter your age:", font=('Times New Roman', 16), bg="white", fg='black')
 age_label.place(relx=0.5, rely=(220/720)+175/720, anchor= "n")
 
 self_label = tk.Label(root, text="Press \"ENTER\" to start. \"q\" to quit.", font=('Times New Roman', 16), bg="white")
 self_label.place(relx=0.5, rely=(220/720)+290/720, anchor= "n")
 
-age_entry = tk.Entry(root)
+age_entry = tk.Entry(root, fg='black', bg='white')
 age_entry.place(relx=0.5, rely=(220/720)+210/720, anchor= "n")
 age_entry.bind("<Return>", focus_next_widget)
 

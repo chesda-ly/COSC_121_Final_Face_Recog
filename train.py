@@ -9,7 +9,7 @@ recognizer = cv2.face.LBPHFaceRecognizer_create()
 path = 'dataset'
 processed_dir_path = 'picture_database'
 
-
+# Function to get images with their IDs
 def get_image_with_id(path):
     os.makedirs(processed_dir_path, exist_ok=True)
     image_paths = [os.path.join(path, f) for f in os.listdir(path) if f.endswith('.jpg')]
