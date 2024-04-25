@@ -200,7 +200,7 @@ name_entry.bind("<Return>", focus_next_widget)
 age_label = tk.Label(root, text="Enter your age:", font=('Times New Roman', 16), bg="white", fg='black')
 age_label.place(relx=0.5, rely=(220/720)+175/720, anchor= "n")
 
-self_label = tk.Label(root, text="Press \"ENTER\" to start. \"q\" to quit.", font=('Times New Roman', 16), bg="white")
+self_label = tk.Label(root, text="Press \"ENTER\" to start. \"q\" to quit.", font=('Times New Roman', 16),fg="black", bg="white")
 self_label.place(relx=0.5, rely=(220/720)+290/720, anchor= "n")
 
 age_entry = tk.Entry(root, fg='black', bg='white')
